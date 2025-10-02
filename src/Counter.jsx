@@ -3,6 +3,7 @@ Crea un componente Counter que permita incrementar, decrementar y resetear un co
 El contador debe tener un valor mínimo de 0 y máximo de 10. Muestra mensajes cuando se
 alcancen los límites. */
 import React, { useState } from 'react';
+import "./MisComponentes.css"
 
 function Counter(){
     const [contador,setContador]=useState(0);

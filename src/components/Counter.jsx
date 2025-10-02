@@ -1,45 +1,44 @@
 import { useState } from "react";
 import './ComponentesHook.css';
 
+function Contador() {
+  const [valor, setValor] = useState(0);
+  const [mensaje, setMensaje] = useState("");
 
-function Counter() {
-  const [count, setCount] = useState(0);
-  const [message, setMessage] = useState("");
-
-  const increment = () => {
-    if (count < 10) {
-      setCount(count + 1);
-      setMessage("");
+  const incrementar = () => {
+    if (valor < 10) {
+      setValor(valor + 1);
+      setMensaje("");
     } else {
-      setMessage("Has alcanzado el valor máximo (10)");
+      setMensaje("Has alcanzado el valor máximo (10)");
     }
   };
 
-  const decrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-      setMessage("");
+  const decrementar = () => {
+    if (valor > 0) {
+      setValor(valor - 1);
+      setMensaje("");
     } else {
-      setMessage("No puedes bajar del valor mínimo (0)");
+      setMensaje("No puedes bajar del valor mínimo (0)");
     }
   };
 
-  const reset = () => {
-    setCount(0);
-    setMessage("Contador reseteado");
+  const reiniciar = () => {
+    setValor(0);
+    setMensaje("Contador reiniciado");
   };
 
   return (
-    <div className="counter">
-      <h2>Contador: {count}</h2>
-      <div className="counter-controls">
-        <button onClick={decrement}>-</button>
-        <button onClick={increment}>+</button>
-        <button onClick={reset}>Reset</button>
+    <div className="contador">
+      <h2>Contador: {valor}</h2>
+      <div className="contador-controles">
+        <button onClick={decrementar}>-</button>
+        <button onClick={incrementar}>+</button>
+        <button onClick={reiniciar}>Reset</button>
       </div>
-      {message && <p style={{ color: "white" }}>{message}</p>}
+      {mensaje && <p style={{ color: "white" }}>{mensaje}</p>}
     </div>
   );
 }
 
-export default Counter;
+export default Contador;

@@ -1,30 +1,29 @@
 import { useState } from "react";
 import './ComponentesHook.css';
 
+function ListaTareas() {
+  const [tareas, setTareas] = useState([]);
+  const [nuevaTarea, setNuevaTarea] = useState("");
 
-function TodoList() {
-  const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
-
-  const addTask = () => {
-    if (newTask.trim() === "") return;
-    setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]);
-    setNewTask("");
+  const agregarTarea = () => {
+    if (nuevaTarea.trim() === "") return;
+    setTareas([...tareas, { id: Date.now(), texto: nuevaTarea, completada: false }]);
+    setNuevaTarea("");
   };
 
-  const toggleTask = (id) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
+  const alternarTarea = (id) => {
+    setTareas(
+      tareas.map((tarea) =>
+        tarea.id === id ? { ...tarea, completada: !tarea.completada } : tarea
       )
     );
   };
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+  const eliminarTarea = (id) => {
+    setTareas(tareas.filter((tarea) => tarea.id !== id));
   };
 
-  const pendingTasks = tasks.filter((task) => !task.completed).length;
+  const tareasPendientes = tareas.filter((tarea) => !tarea.completada).length;
 
   return (
     <div className="todo-list">
@@ -34,28 +33,28 @@ function TodoList() {
         <input
           type="text"
           placeholder="Escribe una tarea..."
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
+          value={nuevaTarea}
+          onChange={(e) => setNuevaTarea(e.target.value)}
         />
-        <button onClick={addTask}>Agregar</button>
+        <button onClick={agregarTarea}>Agregar</button>
       </div>
 
       <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <span className="todo-text" onClick={() => toggleTask(task.id)}>
-              {task.text}
+        {tareas.map((tarea) => (
+          <li key={tarea.id}>
+            <span className="todo-text" onClick={() => alternarTarea(tarea.id)}>
+              {tarea.texto}
             </span>
-            <button onClick={() => deleteTask(task.id)}>Eliminar</button>
+            <button onClick={() => eliminarTarea(tarea.id)}>Eliminar</button>
           </li>
         ))}
       </ul>
 
       <p>
-        <strong>Tareas pendientes:</strong> {pendingTasks}
+        <strong>Tareas pendientes:</strong> {tareasPendientes}
       </p>
     </div>
   );
 }
 
-export default TodoList;
+export default ListaTareas;

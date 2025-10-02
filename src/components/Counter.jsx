@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "../../src/ComponentesHook.css";
+import './ComponentesHook.css';
+
 
 function Counter() {
   const [count, setCount] = useState(0);

@@ -19,18 +19,15 @@ function Counter(){
     const resetearPuntos=()=>{
         setContador(0);
     }
+
+    return(
+        <div>
+            <h2>Contador</h2>
+            <h1>{contador}</h1>
+            {contador>0 ? <button onClick={decrementarPuntos}></button> : 'Limite alcanzado'}
+            <button onClick={resetearPuntos}></button>
+            {contador<10 ? <button onClick={aumentarPuntos}></button> : 'Limite alcanzado'}
+        </div>
+    );
 }
-
-
-
-return(
-    <div>
-        <h2>Contador</h2>
-        <h1>{contador}</h1>
-        {contador>0 ? <button onClick={decrementarPuntos}></button> : 'Limite alcanzado'}
-        <button onClick={resetearPuntos}></button>
-        {contador<10 ? <button onClick={aumentarPuntos}></button> : 'Limite alcanzado'}
-    </div>
-);
-
 export default Counter;
